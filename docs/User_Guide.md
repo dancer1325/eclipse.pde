@@ -1,7 +1,5 @@
 PDE/User Guide
 ==============
-
-Community members are encouraged to maintain the page, and make sure the information is accurate.
   
 Contents
 --------
@@ -73,59 +71,70 @@ Getting Started
 PDE Overview
 ------------
 
-The Plug-in Development Environment (PDE) provides tools to create, develop, test, debug, build and deploy Eclipse plug-ins, fragments, features, update sites, and RCP products.
-
-PDE also provides comprehensive OSGi tooling, which makes it an ideal environment for component programming, not just Eclipse plug-in development.
-
-PDE is broken into three main components:
-
-*   UI - A rich set of models, tools, and editors to develop plug-ins and OSGi bundles
-*   API Tooling - Tooling to assist API documentation and maintenance
-*   Build - Ant-based tools and scripts to automate build processes
+* see [README](../README.md)
 
 **PDE UI**
+* SOME PDE tools
+  * **Form-Based Manifest Editors**
+    * == MULTI-page editors / centrally manage ALL 
+      * plug-in's manifest files or
+      * feature's manifest files
+  * **RCP Tools**
+    * == wizards & form-based editor / allow you, about products
+      * define,
+      * brand,
+      * test,
+      * export them -- to -- MULTIPLE platforms
+  * _New Project Creation Wizards_
+    * create a NEW
+      * plug-in,
+      * fragment,
+      * feature,
+      * feature patch,
+    * update sites
+  * **Import Wizards**
+    * from the file system -- import -- plug-ins & features 
+  * **Export Wizards**
+    * build, package, and export plug-ins, fragments, and products -- via -- 1! click
+  * **Launchers**
+    * test and debug 
+      * Eclipse applications
+      * OSGi bundles
+  * **Views**
+    * enable inspect development environment
+  * **Miscellaneous Tools**
+    * == wizards / about manifest files 
+      * externalize
+      * clean up 
+  * **Conversion Tools**
+    * == wizard / plain Java project or plain JARs -- are converted into a -- plug-in project
+  * **Integration with JDT**
+    * == Plug-in manifest files / used | Java search and refactoring
 
-PDE UI provides editors, wizards, launchers, views, and other tools to create a fully-featured environment to develop and deploy Eclipse plug-ins, fragments, features, update sites, RCP products, and OSGi bundles.
-
-Some of the PDE tools include:
-
-*   **Form-Based Manifest Editors**: Multi-page editors that centrally manage all manifest files of a plug-in or feature.
-*   **RCP Tools**: Wizards and a form-based editor that allow you to define, brand, test, and export products to multiple platforms.
-*   '_New Project Creation Wizards_: Create a new plug-in, fragment, feature, feature patch, and update sites.
-*   **Import Wizards**: Import plug-ins and features from the file system.
-*   **Export Wizards**: Wizards that build, package, and export plug-ins, fragments, and products with a single click.
-*   **Launchers**: Test and debug Eclipse applications and OSGi bundles.
-*   **Views**: PDE provides views that help plug-in developers inspect different aspects of their development environment.
-*   **Miscellaneous Tools**: Wizards to externalize and clean up manifest files.
-*   **Conversion Tools**: Wizard to convert a plain Java project or plain JARs into a plug-in project.
-*   **Integration with JDT**: Plug-in manifest files participate in Java search and refactoring.
-
-To get started, try out the following cheat sheets:
-
-*   **Creating an Eclipse Plug-in**
-*   **Creating a Rich Client Application**
+* see 
+  * [**Creating an Eclipse Plug-in**](#creating-an-eclipse-plug-in)
+  * [**Creating a Rich Client Application**](#creating-a-rich-client-application)
 
 **PDE API Tooling**
-
-PDE API Tooling assists in the documentation and maintenance of APIs provided by plug-ins and OSGi bundles.
-
-Some of the features include:
-
-*   **Compatibility Analysis** : Identify binary compatibility issues relative to a previous version of a plug-in.
-*   **API Restriction Tags** : Javadoc tags are provided to explicitly define restrictions associated with types and members.
-*   **Version Number Validation**: Identify invalid plug-in version numbers relative to a previous version of a plug-in.
-*   **Javadoc `@since` Tag Validation**: Identify missing and invalid `@since` tags on types and members.
-*   **API Leak Analysis** : Identify API types and methods that leak non-API types.
-*   **Quick Fixes** : Quick fixes are provided to adjust plug-in versions and @since tags appropriately.
-
+* SOME features
+  * **Compatibility Analysis**
+    * identify binary compatibility issues -- relative to a -- PREVIOUS version of a plug-in
+  * **API Restriction Tags**
+    * == Javadoc tags / explicitly define restrictions -- associated with -- types and members
+  * **Version Number Validation**
+    * identify invalid plug-in version numbers -- relative to a -- PREVIOUS version of a plug-in
+  * **Javadoc `@since` Tag Validation**
+    * identify missing and invalid `@since` tags | types and members
+  * **API Leak Analysis**
+    * identify API types & methods / leak NON-API types
+  * **Quick Fixes**
+    * adjust plug-in versions & @since tags appropriately
 
 **PDE Build**
 
-PDE Build facilitates the automation of plug-in build processes. 
-PDE Build produces Ant scripts based on development-time information provided by, for example, the plugin.xml and build.properties files. 
-The generated Ant scripts, can fetch the relevant projects from a CVS repository, build jars, Javadoc, source zips, put everything together in a format ready to ship, and send it out to a remote location (e.g., a local network or a downloads server).
-
-PDE build is not actively enhanced anymore as the platform moved to a Maven Tycho build.
+* see [README](../README.md)
+* ⚠️NOT actively enhanced ⚠️
+  * Reason: 🧠platform -- was moved to a -- Maven Tycho build 🧠
 
 Concepts
 ========
@@ -133,32 +142,63 @@ Concepts
 Extensions and Extension Points
 -------------------------------
 
-A basic rule for building modular software systems is to avoid tight coupling between components. If components are tightly integrated, it becomes difficult to assemble the pieces into different configurations or to replace a component with a different implementation without causing a ripple of changes across the system.
-
-Loose coupling in Eclipse is achieved partially through the mechanism of extensions and extension points. The simplest metaphor for describing extensions and extension points is electrical outlets. The outlet, or socket, is the extension point; the plug, or light bulb that connects to it, the extension. As with electric outlets, extension points come in a wide variety of shapes and sizes, and only the extensions that are designed for that particular extension point will fit.
-
-When a plug-in wants to allow other plug-ins to extend or customize portions of its functionality, it will declare an extension point. The extension point declares a contract, typically a combination of XML markup and Java interfaces, that extensions must conform to. Plug-ins that want to connect to that extension point must implement that contract in their extension. The key attribute is that the plug-in being extended knows nothing about the plug-in that is connecting to it beyond the scope of that extension point contract. This allows plug-ins built by different individuals or companies to interact seamlessly, even without their knowing much about one another.
-
-The Eclipse Platform has many applications of the extension and extension point concept. Some extensions are entirely declarative; that is, they contribute no code at all. For example, one extension point provides customized key bindings, and another defines custom file annotations, called markers; neither of these extension points requires any code on behalf of the extension.
-
-Another category of extension points is for overriding the default behavior of a component. For example, the Java development tools include a code formatter but also supply an extension point for third-party code formatters to be plugged in. The resources plug-in has an extension point that allows certain plug-ins to replace the implementation of basic file operations, such as moving and deletion.
-
-Yet another category of extension points is used to group related elements in the user interface. For example, extension points for providing views, editors, and wizards to the UI allow the base UI plug-in to group common features, such as putting all import wizards into a single dialog, and to define a consistent way of presenting UI contributions from a wide variety of other plug-ins.
+* Eclipse PDE == modular software systems
+  * requirements
+    * avoid tight coupling BETWEEN components 
+      * Reason: 🧠if components are tightly integrated -> DIFFICULT to 
+        * assemble the pieces | different configurations or
+        * replace a component -- with a -- different implementation / NOT breaking changes 🧠
+* extensions & extension points
+  * == mechanism / loose coupling 
+  * == | electrical outlets
+    * extension point == outlet or socket
+    * extension == plug or light bulb
+  * extension points
+    * WIDE variety
+    * use cases
+      * | plug-in / wants to allow other plug-ins -- can extend or customize -- portions of its functionality
+        * ⚠️WITHOUT knowing NOTHING about that plugin ⚠️
+    * declares a contract /
+      * NORMALLY == XML markup + Java interfaces
+      * extensions -- MUST -- conform to 
+        * == if plug-ins want to connect to it -> MUST implement that contract | their extension
+    * types
+      * entirely declarative
+        * == NO code
+        * _Example:_ extension points / 
+          * provide customized key bindings
+          * define custom file annotations, called markers
+      * override the default behavior of a component
+        * _Example:_ Java development tools -- supply an -- extension point for third-party code formatters
+      * group related elements | user interface
+        * _Example:_ provide views, editors, and wizards | UI -- enable the base UI plug-in / group common features 
+  * extension 
+    * designed / EACH particular extension point
 
 Feature
 -------
 
-A **feature** is used to package a group of plug-ins together into a single installable and updatable unit.
-
-Features have a manifest that provides basic information about the feature and its content. Content may include plug-ins, fragments and any other files that are important for the feature. A feature can also include other features. The delivery format for a feature is a JAR, but each included plug-in will be provided as a separate JAR.
-
-Once you have created your plug-ins and fragments you can create a new feature by creating a New Feature Project.
-
-You can also create Feature Patches in PDE. A feature patch is developed in the same fashion as a normal feature, but is used to edit an existing feature rather than create a new one.
+* uses
+  * package a group of plug-ins together | 1! installable and updatable unit
+* 's manifest / provides basic information -- about the -- 
+  * feature &
+  * its content
+    * == plug-ins + fragments + ANY other files / important for the feature
+* ALSO, -- can include -- OTHER features
+* JAR
+  * == feature's delivery format
+* 👀EACH included plug-in -- provides a -- separate JAR 👀
+* if you have created your plug-ins, fragments & you want to create a NEW feature -> create a New Feature Project
+* Feature Patches
+  * developed -- as a -- NORMAL feature
+  * uses
+    * edit an EXISTING feature
+      * != create a NEW feature
 
 Fragment
 --------
 
+* TODO:
 A **fragment** is used to replace or extend the functionality of an existing plug-in. A common use for fragments is to put environment (operating system, architecture, etc.) specific code into fragments. Depending on the environment the plug-in is installed in the base plug-in code along with the correct fragment can be installed. Fragments are also ideal for shipping features like language or maintenance packs that typically trail the initial products for a few months.
 
 When a fragment is detected by the platform and its parent plug-in is found, the fragment's libraries, extensions and extension points are "merged" with those of the parent plug-in.
@@ -172,19 +212,36 @@ To create a fragment use the New Fragment Project wizard. Editing fragments is v
 Plug-in
 -------
 
-A **plug-in** is used to group your code into a modular, extendable and sharable unit.
-
-Plug-ins are modular as each plug-in contains some portion of code. The plug-in specifies other plug-ins (or java packages) it requires to be available to run and it also specifies the set of java packages it provides. An Eclipse based program or product will contain multiple plug-ins, which can be added, replaced or removed to alter the functionality of the program.
-
-Plug-ins are extendable using extensions and extension points. A plug-in can provide one or more extension points so other plug-ins can add to the functionality of the plug-in. A plug-in may also provide extensions to connect to other plug-ins.
-
-Plug-ins are sharable. A plug-in can be exported as a directory or as a jar which can be added to other applications. Plug-ins can be grouped into features which can be distributed and installed into applications.
-
-Eclipse plug-ins are based on OSGi bundles. OSGi is used to manage the plug-ins in an Eclipse application. A plug-in must contain a manifest file with valid OSGi headers for plug-in name and version. Extensions and extension points functionality added by Eclipse in addition to OSGi. To use extensions you must provide a plugin.xml file. PDE provides a full featured project and editor for creating and editing these files.
+* uses
+  * group your code | modular, extendable and sharable unit
+* == modular
+  * Reason: 🧠EACH plug-in -- contains -- SOME portion of code🧠
+* specifies
+  * OTHER plug-ins (or java packages) / -- required to -- run
+  * SET of java packages / it provides
+* Eclipse based program or product
+  * == MULTIPLE plug-ins / 
+    * if you want to modify the functionality -> add, replace or remove them
+* are 
+  * extendable -- via -- extensions and extension points
+    * Reason: 🧠plug-in -- can provide --
+      * \>= 1 extension points -> OTHER plug-ins -- can add to -- functionality | plug-in
+      * extensions -- to connect to -- OTHER plug-ins 🧠
+  * sharable
+    * -- exported as a -- directory or jar 
+      * -> you can add | OTHER applications
+    * -- grouped into -- features / can be distributed & installed | applications
+* 💡Eclipse plug-ins -- are based on -- OSGi bundles💡
+  * OSGi -- is used to manage the -- plug-ins | Eclipse application
+  * requirements
+    * plug-in -- MUST contain a -- manifest file / VALID OSGi headers -- for -- plug-in name and version
+    * if you want to use extensions -> you MUST provide a "plugin.xml" 
+      * PDE -- provides a -- FULL featured project and editor / help creating and editing these files
 
 Product
 -------
 
+* TODO:
 An Eclipse based product is a stand-alone program built with the Eclipse platform. A product may optionally be packaged and delivered as one or more features, which are simply groupings of plug-ins that are managed as a single entity by the Eclipse update mechanisms.
 
 Products include all the code and plug-ins needed to run them. This includes a Java runtime environment (JRE) and the Eclipse platform code. The plug-in code, JRE, and Eclipse platform are typically installed with a product-specific installation program. Product providers are free to use any installation tool or program that is appropriate for their needs.

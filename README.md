@@ -13,13 +13,21 @@ Project description:
   * OSGi components
 * 💡built | Eclipse Platform & Eclipse JDT 💡
 * part of Eclipse SDK
-* == UI + API Tools + Build + Doc + Incubator
+* 👀== UI + API Tools + Build + Doc + Incubator 👀
   * UI
-    * == builders, editors / facilitate plug-in development | Eclipse IDE
+    * == set of models, tools / facilitate developing 
+      * plug-ins
+      * OSGi bundles
   * API Tools
     * == IDE + build process integrated tooling / maintain API
   * Build
-    * == tools & scripts / automate build processes
+    * == Ant-based tools & scripts / 
+      * automate build processes
+      * -- based on -- development-time information (_Example:_ plugin.xml and build.properties)
+      * can
+        * fetch the relevant projects -- from a -- CVS repository
+        * build jars, Javadoc, source zips,
+        * put ALL together / ready to ship & send it out to a remote location (_Example:_ local network or a downloads server)
   * Doc
     * -- handles the -- help documentation
   * Incubator
