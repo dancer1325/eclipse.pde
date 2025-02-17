@@ -27,6 +27,11 @@ Project description:
     
 * [Website](https://projects.eclipse.org/projects/eclipse.pde)
 
+Documentation
+-----
+* [docs](docs)
+* [help documentation](org.eclipse.pde.doc.user/toc.xml)
+
 How to build it?
 --------------------------------
 
