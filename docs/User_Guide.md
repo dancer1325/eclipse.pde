@@ -253,26 +253,42 @@ PDE provides a product configuration file and associated editor to make it easy 
 Target Platform
 ---------------
 
-The Target Platform refers to the plug-ins which your workspace will be built and run against. It describes the platform that you are developing for. When developing with PDE, the target platform is used to:
+* Target Platform
+  * == platform / you are developing for 
+  * 👀| develop with PDE, the target platform -- is used to -- 👀
+    * Compile
+      * Plug-ins | workspace -- are built against the -- target platform
+        * -> NOT need have to have EVERYTHING | your workspace
+    * Launch
+      * | use PDE's launchers -- you can choose the -- set of plug-ins / you want to launch 
+      * by default, the Eclipse Application Launcher -- will
+        * start with -- ALL plug-ins | target
+        * | AVAILABLE, use -- workspace plug-ins
+    * Calculate Dependencies
+      * PDE finds the plug-ins 
+        * | target platform
+        * / your plug-ins include/require -- to compile -- correctly 
+    * OSGi State
+      * -- is created for the -- target platform
+        * -> can be used -- by -- OTHER tooling 
+      * if you want to view -> use the Target Platform State View
+    * Other Tools
+      * -- use the -- target platform / determine their options 
+        * _Example:_ import wizards
+  * PDE -- provides a -- default target platform / points to the plug-ins | your CURRENTLY running Eclipse instance 
+* RCP developers 
+  * -- MUST be careful -- managing their target
+    * Reason: 🧠add dependencies -> increases the application's size & complexity 🧠  
+  * | create a NEW target definition for RCP, 
+    * use the RCP template
 
-*   Compile - Plug-ins in the workspace are built against the target platform so you do not have to have everything in your workspace
-*   Launch - When using PDE's launchers you can choose the set of plug-ins you want to launch. By default the Eclipse Application Launcher will start with all plug-ins in the target, but will use workspace plug-ins instead when available
-*   Calculate Dependencies - PDE assists you in finding the plug-ins your plug-ins was include/require to compile correctly by looking at what is available in the target platform
-*   State - An OSGi state is created for the target platform so it can be used by other tooling. The state can also be viewed in detail using the Target Platform State View
-*   Other Tools - Other PDE tools use the target platform to determine their options, such as the import wizards
-
-Whereas the target platform refers to your currently active bundles, a Target Definition is a way of determining the plug-ins to add to the state. You can have multiple target definitions, but only one definition can be selected as the target platform.
-
-The target platform and your target definitions are managed on the Target Platform Preference Page. This page lists all target definitions that PDE has access to and displays which definition is being used as your current target platform. Target definitions can be created and edited here using the Target Definition Content Wizard. To make for easier sharing among a development team, targets can also be created and edited in the workspace as xml files with the extension ".target". These files can be edited using the target definition editor and can be created using the New Target Definition Wizard.
-
-By default PDE provides a default target platform which simply points to the plug-ins in your currently running Eclipse instance (often referred to as your host). For Eclipse plug-in developers this might be all you need. RCP developers must be more careful managing their target as adding dependencies increases the size and complexity of their application. When creating a new target definition for RCP, consider using the RCP template (available with or without source).
-
-See https://github.com/eclipse-pde/eclipse.pde/blob/master/docs/Target_Definitions.md
+* see [here](https://github.com/eclipse-pde/eclipse.pde/blob/master/docs/Target_Definitions.md)
 
 Update Site
 -----------
 
-**Update Sites** are used to organize and export features so they can be installed into Eclipse applications.
+* TODO: 
+* are used to organize and export features so they can be installed into Eclipse applications.
 
 To create an update site you must develop a site.xml file and build the site. PDE provides an editor and project for creating sites. A site will contain one or more features organized into categories.
 

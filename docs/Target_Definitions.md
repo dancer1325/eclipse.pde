@@ -43,8 +43,8 @@ The Basics
   * | Target Platform Preference Page
   * XML files / ".target" extension
     * 👀recommended one 👀
-  * | target definition editor, to edit it
-  * | **New Target Definition Wizard**,to create it 
+    * | target definition editor, to edit it
+    * | **New Target Definition Wizard**,to create it 
 
 * see [how to use the editors, wizards and preference pages | PDE](https://www.eclipse.org/documentation/)
 
